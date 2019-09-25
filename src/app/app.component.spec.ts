@@ -32,4 +32,6 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain('dyrno4kin-app app is running!');
   });
+
+  
 });
