@@ -5,23 +5,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/home">Главная </a>
+          <a class="nav-link" routerLink="/home">Главная </a>
         </li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Товары
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/fruit">Фрукты</a>
-          <a class="dropdown-item" href="/grain">Крупы</a>
-          <a class="dropdown-item" href="/drink">Напитки</a>
+          <a class="dropdown-item" routerLink="/fruit">Фрукты</a>
+          <a class="dropdown-item" routerLink="/grain">Крупы</a>
+          <a class="dropdown-item" routerLink="/drink">Напитки</a>
         </div>
       </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/info">О сайте </a>
+          <a class="nav-link" routerLink="/info">О сайте </a>
         </li>
       </ul>
     </div>
   </nav>
-
-  <app-landing></app-landing>
+  <router-outlet></router-outlet>
