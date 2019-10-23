@@ -1,0 +1,48 @@
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<!-- font-awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container">
+  <div class="sidebar">
+<form class="emp-form" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="productService.selectedProduct.id">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" name="ProductName" #ProductName="ngModel" [(ngModel)]="productService.selectedProduct.ProductName"
+        placeholder="Product Name" required>
+      <div class="validation-error" *ngIf="ProductName.invalid && ProductName.touched">This Field is Required.</div>
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" name="ProductType" #ProductType="ngModel" [(ngModel)]="productService.selectedProduct.ProductType" placeholder="Product Type"
+        required>
+      <div class="validation-error" *ngIf="ProductType.invalid && ProductType.touched">This Field is Required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input class="form-control" name="ProductDescription" #ProductDescription="ngModel" [(ngModel)]="productService.selectedProduct.ProductDescription" placeholder="Product Description">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" name="ProductPrice" #ProductPrice="ngModel" [(ngModel)]="productService.selectedProduct.ProductPrice" placeholder="Product Price">
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" name="ProductCount" ProductCount="ngModel" [(ngModel)]="productService.selectedProduct.ProductCount" placeholder="Product Count">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-8">
+        <button [disabled]="!productForm.valid" type="submit" class="btn btn-lg btn-block btn-info">
+          <i class="fa fa-floppy-o"></i> Save</button>
+      </div>
+      <div class="form-group col-md-4">
+        <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(productForm)">
+          <i class="fa fa-repeat"></i> Reset</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="content">
+    <app-product-list></app-product-list>
+</div>
+</div>

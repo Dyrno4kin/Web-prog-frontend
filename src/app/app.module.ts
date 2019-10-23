@@ -9,6 +9,12 @@ import { InfoComponent } from './info/info.component';
 import { FruitComponent } from './fruit/fruit.component';
 import { GrainComponent } from './grain/grain.component';
 import { DrinkComponent } from './drink/drink.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductComponent } from './products/product/product.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   { 
@@ -47,7 +53,10 @@ const appRoutes: Routes = [
     InfoComponent,
     FruitComponent,
     DrinkComponent,
-    GrainComponent
+    GrainComponent,
+    ProductsComponent,
+    ProductComponent,
+    ProductListComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -55,7 +64,10 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

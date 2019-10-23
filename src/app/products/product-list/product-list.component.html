@@ -1,0 +1,27 @@
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <form class="emp-form">
+      <table class="table table-sm table-hover">
+        <thead style="text-align: center;">
+          <tr>
+            <th>#</th>
+            <th>Name - Price - Count - Type - Description</th>
+            <th>Upd/Del</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of prods">
+            <td>{{product.id}}</td>
+            <td>{{product.ProductName}} - {{product.ProductPrice}} - {{product.ProductCount}} - {{product.ProductType}}- {{product.ProductDescription}}</td>
+            <td>
+              <a class="btn" (click)="showForEdit(product)">
+                <i class="fa fa-pencil-square-o"></i>
+              </a>
+              <a class="btn text-danger" (click)="onDelete(product.id)">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
