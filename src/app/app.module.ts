@@ -15,13 +15,29 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { AuthGuard } from './auth.guard';
+import { UserComponent } from './user/user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserService } from './user/shared/user.service';
 
 const appRoutes: Routes = [
-  { 
-    path: 'home', 
-    component: LandingComponent,
-    data: { title: 'Главная' } 
+  {
+      path: 'signup', component: UserComponent,
+      children: [{ path: '', component: SignUpComponent }]
   },
+  {
+      path: 'login', component: UserComponent,
+      children: [{ path: '', component: SignInComponent }]
+  },
+  { path: 'main', component: LandingComponent,canActivate:[AuthGuard] },
+
+    {
+    path: 'home',
+    component: LandingComponent,
+    data: { title: 'Главная' }
+ },
   { 
     path: 'info',  
     component: InfoComponent,
@@ -42,7 +58,12 @@ const appRoutes: Routes = [
     component: DrinkComponent,
     data: { title: 'Напитки' }
   },
-  //{ path: '**', component: PageNotFoundComponent }
+  { 
+    path: 'product',  
+    component: MaterialsComponent,
+    data: { title: 'Добавить продукт' },
+    canActivate:[AuthGuard]
+  },
 ];
 
 @NgModule({
@@ -56,9 +77,13 @@ const appRoutes: Routes = [
     GrainComponent,
     ProductsComponent,
     ProductComponent,
-    ProductListComponent
+    ProductListComponent,
+    SignUpComponent,
+    UserComponent,
+    SignInComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
@@ -67,9 +92,9 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

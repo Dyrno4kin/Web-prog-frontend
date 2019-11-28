@@ -20,13 +20,19 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="/info">О сайте </a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/product">Добавить продукты </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/signup">Вход/Регистрация </a>
+        </li>
       </ul>
     </div>
   </nav>
-  <router-outlet></router-outlet>
 
-  <div class="container">
-    <app-products></app-products>
-  </div>
-  <div class="clear"></div>
-    <footer></footer>
+  <a class="card" (click)="Logout()"  ng-show="[AuthGuard]">
+      <span>Выйти из аккаунта</span>
+  </a>
+  <router-outlet></router-outlet>
+  
+

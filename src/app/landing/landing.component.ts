@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user/shared/user.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  userClaims: any;
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.getUserClaims().subscribe((data: any) => {
+      this.userClaims = data;
+
+    });
+  }
+
+  Logout() {
+    localStorage.removeItem('userToken');
+    this.router.navigate(['/login']);
   }
 
 }
