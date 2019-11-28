@@ -5,20 +5,23 @@ import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './user.model';
 import { HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
     readonly rootUrl = 'http://localhost:49879';
-      constructor(private http: HttpClient) { }
+      constructor(private http: HttpClient, private toastr: ToastrService) { }
 
-      registerUser(user : User){
-        const body: User = {
+      registerUser(user : User, roles: string[]){
+        const body = {
           UserName: user.UserName,
-          Password: user.Password
+          Password: user.Password,
+          Roles: roles
         }
-        return this.http.post(this.rootUrl + '/api/User/Register', body);
+        var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
+        return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });
       }
       userAuthentication(user : User) {
         var data = "username=" +  user.UserName + "&password=" + user.Password + "&grant_type=password";
@@ -28,4 +31,23 @@ export class UserService {
     getUserClaims(){
    return  this.http.get(this.rootUrl+'/api/GetUserClaims');
   }
+
+  getAllRoles() {
+    var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
+    return this.http.get(this.rootUrl + '/api/GetAllRoles', { headers: reqHeader });
+  }
+
+  roleMatch(allowedRoles): boolean {
+    var isMatch = false;
+    var userRoles: string[] = JSON.parse(localStorage.getItem('userRoles'));
+    allowedRoles.forEach(element => {
+      if (userRoles.indexOf(element) > -1) {
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
+
+
 }

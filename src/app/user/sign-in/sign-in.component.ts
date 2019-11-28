@@ -14,13 +14,16 @@ import { NgForm } from '@angular/forms';
 export class SignInComponent implements OnInit {
   isLoginError : boolean = false;
   user: User;
+  roles: any[];
   constructor(private userService : UserService,private router : Router, private toastr: ToastrService) { }
 
   ngOnInit() {}
 
   resetForm(form?: NgForm) {
+    if (this.roles)
+    this.roles.map(x => x.selected = false);
     if (form != null)
-      form.reset();
+    form.reset();
     this.user = {
       UserName: '',
       Password: ''
@@ -30,6 +33,7 @@ export class SignInComponent implements OnInit {
   OnSubmit(form: NgForm) {
      this.userService.userAuthentication(form.value).subscribe((data : any)=>{
       localStorage.setItem('userToken',data.access_token);
+      localStorage.setItem('userRoles', data.role);
       this.toastr.success('User login successful');
       this.router.navigate(['/product']);
     },

@@ -12,7 +12,7 @@ import { DrinkComponent } from './drink/drink.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -61,7 +61,7 @@ const appRoutes: Routes = [
   { 
     path: 'product',  
     component: MaterialsComponent,
-    data: { title: 'Добавить продукт' },
+    data: { roles: ['Admin'] },
     canActivate:[AuthGuard]
   },
 ];
