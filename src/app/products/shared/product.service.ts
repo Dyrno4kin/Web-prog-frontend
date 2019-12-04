@@ -31,4 +31,11 @@ export class ProductService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     return this.http.delete<number>(this.url + "/" + id, httpOptions);  
   }  
+  getResult(text: string): Observable<any> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    const data: any = {
+    "text": text
+    };
+    return this.http.post('http://localhost:49879/api/Search/?text=' + text, <JSON>data, httpOptions)
+  }
 }
