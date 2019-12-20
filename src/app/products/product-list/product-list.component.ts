@@ -4,6 +4,7 @@ import { Product } from '../shared/product.model';
 import { ToastrService } from 'ngx-toastr';  
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+//import { WebsocketService } from '../websocket/websocket.service';
 
 @Component({
   selector: 'app-product-list',
